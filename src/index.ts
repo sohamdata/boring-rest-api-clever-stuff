@@ -5,6 +5,9 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
+
+import router from './router';
+
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
@@ -25,10 +28,6 @@ server.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
 });
 
-app.get('/', (req, res) => {
-    res.send('some dreams stay dreams some dreams come true');
-});
-
 const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.Promise = Promise;
@@ -37,3 +36,5 @@ mongoose.connect(MONGO_URL as string);
 mongoose.connection.on('errror', (err: Error) => {
     console.error('Mongoose error', err);
 });
+
+app.use('/', router());
