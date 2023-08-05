@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon"
+    "dee": "nodemon"
   },
   "keywords": [],
   "author": "Soham Datta",
