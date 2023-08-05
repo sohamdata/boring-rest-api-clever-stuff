@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
 
@@ -28,10 +29,10 @@ app.get('/', (req, res) => {
     res.send('some dreams stay dreams some dreams come true');
 });
 
-const MONGO_URL = process.env.MONGO_URL || 'mongodb+srv://admin:soham@cluster0.ffocoq4.mongodb.net/?retryWrites=true&w=majority'
+const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGO_URL);
+mongoose.connect(MONGO_URL as string);
 
 mongoose.connection.on('errror', (err: Error) => {
     console.error('Mongoose error', err);
