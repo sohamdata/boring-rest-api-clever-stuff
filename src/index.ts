@@ -33,7 +33,7 @@ const MONGO_URL = process.env.MONGO_URL;
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL as string);
 
-mongoose.connection.on('errror', (err: Error) => {
+mongoose.connection.on('error', (err: Error) => {
     console.error('Mongoose error', err);
 });
 
