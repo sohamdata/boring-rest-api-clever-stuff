@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+require('dotenv').config();
 
 const SECRET = process.env.SECRET;
 
