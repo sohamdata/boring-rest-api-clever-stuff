@@ -14,7 +14,7 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
             return res.status(403).json({ message: 'Not logged in / Invalid session token' });
         }
 
-        merge(req, { identity: { currUser } });
+        merge(req, { identity: currUser });
         return next();
 
     } catch (error) {
@@ -29,10 +29,10 @@ export const isOwner = async (req: express.Request, res: express.Response, next:
         const currUserId = get(req, 'identity._id') as string;
 
         if (!currUserId) {
-            return res.status(403).json({ message: 'No user id' });
+            return res.status(400).json({ message: 'No user id' });
         }
 
-        if (currUserId !== id) {
+        if (currUserId.toString() !== id) {
             return res.status(403).json({ message: 'bro, you cannot delete other users. what do you think you are? an admin? (there is no admin)' });
         }
 
